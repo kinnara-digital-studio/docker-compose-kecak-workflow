@@ -17,11 +17,3 @@ services:
       - ${WFLOW_DIR}:/usr/local/tomcat/wflow
     ports:
       - "8080:8080"
-  proxy:
-    image: nginx:latest
-    links:
-      - "web:web"
-    volumes:
-      - ${PROXY_DIR}/nginx.conf:/etc/nginx/nginx.conf
-    ports:
-      - "8081:80"
