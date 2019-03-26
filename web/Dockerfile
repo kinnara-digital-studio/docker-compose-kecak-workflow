@@ -11,6 +11,9 @@ RUN rm -rf /usr/local/tomcat/webapps/ROOT ; \
 COPY tomcat8.sh /usr/local/tomcat/
 
 EXPOSE 8080
+EXPOSE 8000
 
 ENV JAVA_MEMORY=${JAVA_MEMORY} 
+ENV TOMCAT_DEBUG=${TOMCAT_DEBUG}
+
 CMD ["/usr/local/tomcat/tomcat8.sh", "run"]

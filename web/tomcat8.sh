@@ -9,4 +9,11 @@ fi
 
 export JAVA_OPTS="-Xmx${JAVA_MEMORY} -Dwflow.home=${KECAK_DIR}/wflow/"
 
-catalina.sh $*
+if [ -z "$TOMCAT_DEBUG" ]
+then
+    export JPDA_ADDRESS=8000
+    export JPDA_TRANSPORT=dt_socket
+    catalina.sh jpda $*
+else
+    catalina.sh $*
+fi
