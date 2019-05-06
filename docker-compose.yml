@@ -6,6 +6,7 @@ services:
       - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
     volumes:
       - ${DB_DATA}:/var/lib/mysql
+
   web:
     image: kinnaradigitalstudio/kecak-workflow:latest
     depends_on:
@@ -18,7 +19,17 @@ services:
     volumes:
       - ${WFLOW_DIR}:/usr/local/tomcat/wflow
     ports:
-      - "8080:8080"
+      # application port
+      # - "8080:8080"
 
       # debugging port
       - "8000:8000"
+
+  proxy:
+    image: kinnaradigitalstudio/kecak-proxy:latest
+    depends_on:
+      - web
+    links:
+      - "web:web"
+    ports:
+      - "80:80"
