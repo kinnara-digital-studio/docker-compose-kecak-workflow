@@ -32,6 +32,4 @@ services:
     links:
       - "web:web"
     ports:
-      - "443:443"
-    #volumes:
-    #  - ${PROXY_DIR}:/etc/nginx
+      - "80:80"
