@@ -26,10 +26,12 @@ services:
       - "8000:8000"
 
   proxy:
-    image: kinnaradigitalstudio/kecak-proxy:latest
+    build: ./proxy
     depends_on:
       - web
     links:
       - "web:web"
     ports:
-      - "80:80"
+      - "443:443"
+    #volumes:
+    #  - ${PROXY_DIR}:/etc/nginx
