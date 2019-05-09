@@ -20,7 +20,7 @@ services:
       - ${WFLOW_DIR}:/usr/local/tomcat/wflow
     ports:
       # application port
-      # - "8080:8080"
+      - "8080:8080"
 
       # debugging port
       - "8000:8000"
