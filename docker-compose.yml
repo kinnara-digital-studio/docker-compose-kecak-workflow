@@ -24,7 +24,6 @@ services:
 
       # debugging port
       - "8000:8000"
-
   proxy:
     build: ./proxy
     depends_on:
@@ -33,3 +32,8 @@ services:
       - "web:web"
     ports:
       - "80:80"
+      - "443:443"
+    environment:
+      - PROXY_HOST
+      - PROXY_SSL_CERTIFICATE
+      - PROXY_SSL_KEY

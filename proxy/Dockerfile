@@ -1,5 +1,4 @@
-FROM nginx
-
+FROM shiphp/nginx-env
 #  default conf for proxy service
 COPY ./default.conf /etc/nginx/conf.d/default.conf
 

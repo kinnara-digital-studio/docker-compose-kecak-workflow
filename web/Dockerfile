@@ -15,5 +15,4 @@ EXPOSE 8000
 
 ENV JAVA_MEMORY=${JAVA_MEMORY} 
 ENV TOMCAT_DEBUG=${TOMCAT_DEBUG}
-
 CMD ["/usr/local/tomcat/tomcat8.sh", "run"]
