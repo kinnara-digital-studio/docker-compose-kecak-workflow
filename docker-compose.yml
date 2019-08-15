@@ -1,12 +1,11 @@
 version: "3"
 services:
   db:
-    image: mysql:5.7
+    image: mysql:8.0.17
     environment:
       - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
     volumes:
       - ${DB_DATA}:/var/lib/mysql
-
   web:
     image: kinnaradigitalstudio/kecak-workflow:latest
     depends_on:
@@ -37,3 +36,6 @@ services:
       - PROXY_HOST
       - PROXY_SSL_CERTIFICATE
       - PROXY_SSL_KEY
+      - PROXY_HTTP_PORT
+      - PROXY_HTTPS_PORT
+      - PROXY_MODE
