@@ -1,12 +1,11 @@
 version: "3"
 services:
   db:
-    image: mysql:8
+    image: mysql:8.0.17
     environment:
       - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
     volumes:
       - ${DB_DATA}:/var/lib/mysql
-
   web:
     image: kinnaradigitalstudio/kecak-workflow:latest
     # build: ./web
@@ -25,7 +24,6 @@ services:
 
       # debugging port
       - "8000:8000"
-
   proxy:
     build: ./proxy
     depends_on:
@@ -34,3 +32,11 @@ services:
       - "web:web"
     ports:
       - "80:80"
+      - "443:443"
+    environment:
+      - PROXY_HOST
+      - PROXY_SSL_CERTIFICATE
+      - PROXY_SSL_KEY
+      - PROXY_HTTP_PORT
+      - PROXY_HTTPS_PORT
+      - PROXY_MODE
