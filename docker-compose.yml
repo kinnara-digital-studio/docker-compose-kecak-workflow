@@ -25,7 +25,7 @@ services:
       # debugging port
       - "8000:8000"
   proxy:
-    build: ./proxy
+    image: kinnaradigitalstudio/kecak-proxy:ssl
     depends_on:
       - web
     links:
@@ -37,6 +37,8 @@ services:
       - PROXY_HOST
       - PROXY_SSL_CERTIFICATE
       - PROXY_SSL_KEY
-      - PROXY_HTTP_PORT
-      - PROXY_HTTPS_PORT
+      - PROXY_DEFAULT_PORT
+      - PROXY_REDIRECT_PORT
       - PROXY_MODE
+    volumes:
+      - ${PROXY_SSL_DIR}:/etc/nginx/ssl/

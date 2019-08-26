@@ -1,3 +1,3 @@
 #!/bin/sh
 
-docker build -t kinnaradigitalstudio/kecak-proxy .
+docker build -t kinnaradigitalstudio/kecak-proxy:ssl .
