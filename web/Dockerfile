@@ -1,4 +1,4 @@
-FROM tomcat:8.5
+FROM tomcat:9.0.24
 
 COPY kecak.war /usr/local/tomcat/webapps
 RUN rm -rf /usr/local/tomcat/webapps/ROOT ; \
