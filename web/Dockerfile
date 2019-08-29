@@ -1,5 +1,8 @@
 FROM tomcat:9.0-jdk8
 
+# install cron for scheduler
+RUN apt-get update && apt-get -y install cron
+
 COPY kecak.war /usr/local/tomcat/webapps
 RUN rm -rf /usr/local/tomcat/webapps/ROOT ; \
     mv /usr/local/tomcat/webapps/kecak.war /usr/local/tomcat/webapps/ROOT.war ; \
