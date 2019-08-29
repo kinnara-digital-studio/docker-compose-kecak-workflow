@@ -25,14 +25,13 @@ services:
       # debugging port
       - "8000:8000"
 #  proxy:
-#    image: kinnaradigitalstudio/kecak-proxy:ssl
+#    image: kinnaradigitalstudio/kecak-proxy:no-ssl
 #    depends_on:
 #      - web
 #    links:
 #      - "web:web"
 #    ports:
 #      - "80:80"
-#      - "443:443"
 #    environment:
 #      - PROXY_HOST
 #      - PROXY_SSL_CERTIFICATE
