@@ -11,7 +11,7 @@ services:
     ports:
       - "3306:3306"
   web:
-    image: kinnaradigitalstudio/kecak-workflow:latest
+    image: kinnaradigitalstudio/kecak-workflow:no-ssl-latest
     # build: ./web
     depends_on:
       - db
