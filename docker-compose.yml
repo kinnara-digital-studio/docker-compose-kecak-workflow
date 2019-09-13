@@ -1,9 +1,11 @@
-version: "3"
+version: "3.7"
 services:
   db:
     image: mysql:8.0.17
     environment:
       - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+    networks:
+      - backend
     volumes:
       - ${DB_DATA}:/var/lib/mysql
     ports:
@@ -15,9 +17,11 @@ services:
       - db
     environment:
       - JAVA_MEMORY=${WFLOW_JAVA_MEMORY}
-    links:
-      # database is accessible from web by using hostname 'db'
-      - "db:db"
+    #links:
+    #  # database is accessible from web by using hostname 'db'
+    #  - "db:db"
+    networks:
+      - backend
     volumes:
       - ${WFLOW_DIR}:/usr/local/tomcat/wflow
     ports:
@@ -30,10 +34,16 @@ services:
     image: kinnaradigitalstudio/kecak-proxy:no-ssl
     depends_on:
       - web
-    links:
-      - "web:web"
+      - db
+    #links:
+    #  - "web:web"
+    networks:
+      - backend
     ports:
       - "80:80"
     environment:
       - PROXY_HOST
       - PROXY_DEFAULT_PORT
+
+networks:
+  backend:

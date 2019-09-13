@@ -7,7 +7,7 @@ then
     JAVA_MEMORY=512M
 fi
 
-export JAVA_OPTS="-Xmx${JAVA_MEMORY} -Dwflow.home=${KECAK_DIR}/wflow/"
+export JAVA_OPTS="-Xmx${JAVA_MEMORY} -Xss512K -Dwflow.home=${KECAK_DIR}/wflow/"
 
 if [ -z "$TOMCAT_DEBUG" ]
 then
