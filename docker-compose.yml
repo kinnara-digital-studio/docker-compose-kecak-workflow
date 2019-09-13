@@ -11,7 +11,7 @@ services:
     ports:
       - "3306:3306"
   web:
-    image: kinnaradigitalstudio/kecak-workflow:1.4.0
+    image: kinnaradigitalstudio/kecak-workflow:latest
     # build: ./web
     depends_on:
       - db
@@ -26,12 +26,13 @@ services:
       - ${WFLOW_DIR}:/usr/local/tomcat/wflow
     ports:
       # application port
-      - "8080:8080"
+      #- "8080:8080"
 
       # debugging port
       - "8000:8000"
+    command : ["wait-for-it", "db:3306", "--", "/usr/local/tomcat/tomcat8.sh", "run"]
   proxy:
-    image: kinnaradigitalstudio/kecak-proxy:no-ssl
+    image: kinnaradigitalstudio/kecak-proxy:no-ssl-latest
     depends_on:
       - web
       - db
@@ -45,5 +46,6 @@ services:
       - PROXY_HOST
       - PROXY_DEFAULT_PORT
       - PROXY_MAX_UPLOAD_SIZE
+    command : ["wait-for-it", "web:8080", "--", "/usr/local/bin/start.sh"]
 networks:
   backend:

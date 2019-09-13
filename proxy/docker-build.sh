@@ -1,3 +1,10 @@
 #!/bin/sh
 
-docker build -t kinnaradigitalstudio/kecak-proxy:no-ssl .
+if [ -z "$1" ]
+then
+  TAG=latest
+else
+  TAG=$1
+fi
+
+docker build -t kinnaradigitalstudio/kecak-proxy:no-ssl-$TAG .
