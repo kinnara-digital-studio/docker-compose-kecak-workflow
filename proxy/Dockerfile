@@ -14,5 +14,3 @@ COPY wait-for-it /usr/local/bin
 ENV PROXY_DEFAULT_PORT=${PROXY_DEFAULT}
 ENV PROXY_HOST=${PROXY_HOST}
 ENV PROXY_MAX_UPLOAD_SIZE=${PROXY_MAX_UPLOAD_SIZE}
-
-CMD ["/usr/local/bin/start.sh"]
