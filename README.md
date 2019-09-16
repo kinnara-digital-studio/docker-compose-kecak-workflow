@@ -15,10 +15,10 @@ Navigate to project's folder
 cd docker-kecak-workflow
 ```
 
-Run Docker-Compose
+Run Docker Compose
 ```
 docker-compose up
 ```
 
 # Debugging
-Debugging mode can be accessed using maven remote debugger on port 8000
+Remote Server Debugging mode can be accessed using maven remote debugger on port 8000
