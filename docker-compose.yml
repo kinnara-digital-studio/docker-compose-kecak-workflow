@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   db:
-    image: mysql:8.0.17
+    image: mysql:5.7.28
     environment:
       - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
     networks:
@@ -14,7 +14,7 @@ services:
     image: kinnaradigitalstudio/kecak-workflow:pttimah-tap
     # build: ./web
     depends_on:
-      - db
+      - "db"
     environment:
       - JAVA_MEMORY=${WFLOW_JAVA_MEMORY}
     #links:
@@ -34,8 +34,8 @@ services:
   proxy:
     image: kinnaradigitalstudio/kecak-proxy:no-ssl-latest
     depends_on:
-      - web
-      - db
+      - "web"
+      - "db"
     #links:
     #  - "web:web"
     networks:
