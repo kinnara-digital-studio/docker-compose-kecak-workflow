@@ -12,11 +12,11 @@ services:
       - "3306:3306"
   web:
     image: kinnaradigitalstudio/kecak-workflow:latest
-    # build: ./web
     depends_on:
-      - db
+      - "db"
     environment:
       - JAVA_MEMORY=${WFLOW_JAVA_MEMORY}
+      - JAVA_STACK_SIZE=${WFLOW_JAVA_STACK_SIZE}
     #links:
     #  # database is accessible from web by using hostname 'db'
     #  - "db:db"
@@ -24,9 +24,10 @@ services:
       - backend
     volumes:
       - ${WFLOW_DIR}:/usr/local/tomcat/wflow
+      - ${WFLOW_LOGS}:/usr/local/tomcat/logs
     ports:
       # application port
-      - "8080:8080"
+#      - "8080:8080"
 
       # debugging port
       - "8000:8000"
@@ -34,8 +35,8 @@ services:
   proxy:
     image: kinnaradigitalstudio/kecak-proxy:no-ssl-latest
     depends_on:
-      - web
-      - db
+      - "web"
+      - "db"
     #links:
     #  - "web:web"
     networks:
