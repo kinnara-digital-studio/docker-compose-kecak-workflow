@@ -11,7 +11,7 @@ services:
     ports:
       - "3306:3306"
   web:
-    image: kinnaradigitalstudio/kecak-workflow:${WFLOW_DOCKER_VERSION}
+    image: kinnaradigitalstudio/kecak-workflow:${WFLOW_IMAGE_TAG}
     depends_on:
       - "db"
     environment:
