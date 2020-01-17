@@ -15,7 +15,7 @@ services:
     depends_on:
       - "db"
     environment:
-      - JAVA_MEMORY=${WFLOW_JAVA_MEMORY}
+      - JAVA_OPTS=${WFLOW_JAVA_OPTS}
     #links:
     #  # database is accessible from web by using hostname 'db'
     #  - "db:db"
