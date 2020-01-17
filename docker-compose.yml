@@ -27,11 +27,11 @@ services:
       - ${WFLOW_LOGS}:/usr/local/tomcat/logs
     ports:
       # application port
-#      - "8080:8080"
+      - "8080:8080"
 
       # debugging port
-      - "8000:8000"
-    command : ["wait-for-it", "db:3306", "--", "/usr/local/tomcat/tomcat8.sh", "run"]
+      - "8000:${TOMCAT_DEBUG_PORT}"
+    command : ["wait-for-it", "db:3306", "--", "/usr/local/tomcat/tomcat9.sh", "run"]
   proxy:
     image: kinnaradigitalstudio/kecak-proxy:no-ssl-latest
     depends_on:
