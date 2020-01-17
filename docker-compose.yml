@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   db:
-    image: mysql:8.0.18
+    image: mysql:${DB_IMAGE_TAG}
     environment:
       - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
     networks:
@@ -33,7 +33,7 @@ services:
 
     command : ["wait-for-it", "db:3306", "--", "/usr/local/tomcat/tomcat.sh", "run"]
   proxy:
-    image: kinnaradigitalstudio/kecak-proxy:no-ssl-latest
+    image: kinnaradigitalstudio/kecak-proxy:${PROXY_IMAGE_TAG}
     depends_on:
       - "web"
       - "db"
