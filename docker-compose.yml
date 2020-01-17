@@ -11,12 +11,11 @@ services:
     ports:
       - "3306:3306"
   web:
-    image: kinnaradigitalstudio/kecak-workflow:latest
+    image: kinnaradigitalstudio/kecak-workflow:${WFLOW_DOCKER_VERSION}
     depends_on:
       - "db"
     environment:
       - JAVA_MEMORY=${WFLOW_JAVA_MEMORY}
-      - JAVA_STACK_SIZE=${WFLOW_JAVA_STACK_SIZE}
     #links:
     #  # database is accessible from web by using hostname 'db'
     #  - "db:db"
@@ -31,7 +30,8 @@ services:
 
       # debugging port
       - "8000:${TOMCAT_DEBUG_PORT}"
-    command : ["wait-for-it", "db:3306", "--", "/usr/local/tomcat/tomcat9.sh", "run"]
+
+    command : ["wait-for-it", "db:3306", "--", "/usr/local/tomcat/tomcat.sh", "run"]
   proxy:
     image: kinnaradigitalstudio/kecak-proxy:no-ssl-latest
     depends_on:
