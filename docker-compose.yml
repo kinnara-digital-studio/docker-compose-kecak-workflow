@@ -16,6 +16,7 @@ services:
       - "db"
     environment:
       - JAVA_OPTS=${WFLOW_JAVA_OPTS}
+      - TOMCAT_DEBUG=${TOMCAT_DEBUG}
     #links:
     #  # database is accessible from web by using hostname 'db'
     #  - "db:db"
