@@ -51,3 +51,9 @@ services:
     command : ["wait-for-it", "web:8080", "--", "/usr/local/bin/start.sh"]
 networks:
   backend:
+volumes:
+  db_data:
+  wflow_dir:
+  wflow_logs:
+  proxy_dir:
+  
