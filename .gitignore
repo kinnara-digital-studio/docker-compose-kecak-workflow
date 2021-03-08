@@ -2,3 +2,4 @@
 *.jar
 *.crt
 .env
+.DS_Store
