@@ -17,9 +17,9 @@ services:
     environment:
       - JAVA_OPTS=${WFLOW_JAVA_OPTS}
       - TOMCAT_DEBUG=${TOMCAT_DEBUG}
-    #links:
-    #  # database is accessible from web by using hostname 'db'
-    #  - "db:db"
+    links:
+     # database is accessible from web by using hostname 'db'
+      - "db:db"
     networks:
       - backend
     volumes:
@@ -27,26 +27,17 @@ services:
       - ${WFLOW_LOGS}:/usr/local/tomcat/logs
     ports:
       # application port
-#      - "8080:8080"
-
+      - "8080:8080"
       # debugging port
       - "8000:${TOMCAT_DEBUG_PORT}"
-
     command : ["wait-for-it", "db:3306", "--", "/usr/local/tomcat/tomcat.sh", "run"]
-#  docs:
-#    image: onlyoffice/documentserver
-#    depends_on:
-#      - "db"
-#      - "web"
-#    ports:
-#      - "8081:80"
   proxy:
     image: kinnaradigitalstudio/kecak-proxy:${PROXY_IMAGE_TAG}
     depends_on:
       - "web"
       - "db"
-    #links:
-    #  - "web:web"
+    links:
+      - "web:web"
     networks:
       - backend
     ports:
